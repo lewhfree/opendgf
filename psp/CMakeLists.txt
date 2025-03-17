@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(sdl2)
-
-add_executable(${PROJECT_NAME} opendgf.c)
+project(opendgf)
+set(SOURCES src/opendgf.c)
+add_executable(${PROJECT_NAME} ${SOURCES})
 
 include(FindPkgConfig)
 pkg_search_module(SDL2 REQUIRED sdl2)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIRS} PRIVATE include/)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${SDL2_LIBRARIES}
@@ -20,6 +20,6 @@ if(PSP)
         BACKGROUND_PATH NULL
         PREVIEW_PATH NULL
         TITLE ${PROJECT_NAME}
-        VERSION 01.00
+        VERSION 00.01
     )
 endif()
